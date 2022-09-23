@@ -1,0 +1,16 @@
+.idea
+.vscode
+src/.env
+src/.env.backup
+media
+*.pyc
+env
+venv
+virtualenv
+virtualenvs
+.code
+src/*/node_moduels
+src/*/package.lock
+Pipfile.lock
+.DS_Store
+.env
