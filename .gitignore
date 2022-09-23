@@ -14,3 +14,7 @@ src/*/package.lock
 Pipfile.lock
 .DS_Store
 .env
+.venv
+.virtualenv
+.virtualenvs
+.configfile
