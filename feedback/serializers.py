@@ -23,7 +23,8 @@ class FeedbackSerializerPost(serializers.ModelSerializer):
                 instance.save()
                 return instance
             if not validated_data['is_anonymous'] and isinstance(request.user, AnonymousUser):
-                raise exceptions.PermissionDenied('Please Login if you are not posting as Anonymosly or select Anonymous')
+                raise exceptions.PermissionDenied('Please Login if you are not posting as Anonymosly or select '
+                                                  'Anonymous')
             elif not validated_data['is_anonymous'] and not isinstance(request.user, AnonymousUser):
                 instance = self.Meta.model.objects.create(created_by=request.user, **validated_data)
                 instance.save()

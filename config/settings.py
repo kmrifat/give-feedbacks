@@ -38,6 +38,8 @@ local_apps = [
 
 third_party_apps = [
     'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
 
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -133,3 +136,14 @@ MEDIA_URL = env.str('MEDIA_URL', default='media/')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = env.str('DEFAULT_AUTO_FIELD', default='django.db.models.BigAutoField')
+
+
+# Rest Framework config
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+CORS_ALLOW_ALL_ORIGINS = True
