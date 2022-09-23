@@ -21,16 +21,30 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = env.str('ALLOWED_HOSTS').split(' ')
 
-
 # Application definition
 
-INSTALLED_APPS = [
+core_apps = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+local_apps = [
+    'feedback',
+]
+
+third_party_apps = [
+    'rest_framework',
+]
+
+
+INSTALLED_APPS = [
+    *core_apps,
+    *local_apps,
+    *third_party_apps
 ]
 
 MIDDLEWARE = [
@@ -48,7 +62,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [root, 'templates'],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,8 +83,8 @@ WSGI_APPLICATION = env.str('WSGI_APPLICATION')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends' + env.str('DB_ENGINE'),
-        'NAME': root / env.str('DB_NAME'),
+        'ENGINE': 'django.db.backends.' + env.str('DB_ENGINE', default='db.sqlite3'),
+        'NAME': BASE_DIR / env.str('DB_NAME'),
     }
 }
 
@@ -99,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = env.str('LANGUAGE_CODE', default='en-us')
 
-TIME_ZONE = env.str('APP_TIMEZONE', default='UTC')
+TIME_ZONE = env.str('TIME_ZONE', default='UTC')
 
 USE_I18N = True
 

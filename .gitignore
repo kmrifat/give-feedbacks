@@ -18,3 +18,5 @@ Pipfile.lock
 .virtualenv
 .virtualenvs
 .configfile
+db.sqlite3
+__pycache__
